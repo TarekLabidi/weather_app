@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/Views/mobileView/mobile_view.dart';
+import 'package:weather_app/Views/mobile_view.dart';
 import 'package:weather_app/Views/pc_view.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -15,9 +15,9 @@ class _MyHomePageState extends State<MyHomePage> {
     //Making sure the app look good on all resolutions
     if (MediaQuery.of(context).size.width < 650 ||
         MediaQuery.of(context).size.height < 500) {
-      return buildMobileView();
+      return const BuildMobileView();
     } else {
-      return BuildPcView();
+      return const BuildPcView();
     }
   }
 }

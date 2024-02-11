@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/Views/mobileView/horizontal_layout.dart';
 import 'package:weather_app/Views/mobileView/verticla_layout.dart';
 
-class buildMobileView extends StatefulWidget {
-  const buildMobileView({super.key});
+class BuildMobileView extends StatefulWidget {
+  const BuildMobileView({super.key});
 
   @override
-  State<buildMobileView> createState() => _buildMobileViewState();
+  State<BuildMobileView> createState() => _BuildMobileViewState();
 }
 
-class _buildMobileViewState extends State<buildMobileView> {
+class _BuildMobileViewState extends State<BuildMobileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //Making sure the App looks good when the phone is Oriznted
       body: OrientationBuilder(builder: (context, orientation) {
-        print(orientation);
         return orientation == Orientation.portrait
-            ? VerticalLayout()
-            : HorizontalLayout();
+            ? const VerticalLayout()
+            : const HorizontalLayout();
       }),
     );
   }
