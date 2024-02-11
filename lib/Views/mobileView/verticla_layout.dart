@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/Views/components/bottom_informations_sheet.dart';
+import 'package:weather_app/Views/components/text_widget.dart';
 
 class VerticalLayout extends StatefulWidget {
   const VerticalLayout({super.key});
@@ -23,19 +25,38 @@ class _VerticalLayoutState extends State<VerticalLayout> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Image.asset(
-              'assets/images/house.png',
-              height: height * 0.55,
-              width: width,
-              fit: BoxFit.cover,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Image.asset(
+                  'assets/images/house.png',
+                  height: height * 0.55,
+                  width: width,
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(
+                  height: 60,
+                )
+              ],
             ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: height * 0.2),
-              Center(child: Text('Monastir')),
+              SizedBox(height: height * 0.1),
+              Center(
+                child: TextWidget(
+                  width: width,
+                  city: 'Monastir',
+                  degree: 19,
+                  description: "Mostly Clear",
+                  highest: 24,
+                  lowest: 18,
+                ),
+              ),
+              const Spacer(),
+              const BottomInformationsSheet(),
             ],
           )
         ],
