@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:weather_app/Views/components/weather_informations.dart';
 
 class BottomInformationsSheet extends StatelessWidget {
   const BottomInformationsSheet({Key? key});
@@ -11,8 +12,9 @@ class BottomInformationsSheet extends StatelessWidget {
     //Creating a blured Container with a white border
     return Stack(
       children: [
+        //Container blured
         ClipRRect(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(40), topRight: Radius.circular(40)),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
@@ -21,10 +23,7 @@ class BottomInformationsSheet extends StatelessWidget {
               height: height / 3,
               color: Colors.transparent,
               child: const Center(
-                child: Text(
-                  'Hello, World!',
-                  style: TextStyle(color: Colors.white, fontSize: 24),
-                ),
+                child: WeatherInformations(),
               ),
             ),
           ),
@@ -35,7 +34,7 @@ class BottomInformationsSheet extends StatelessWidget {
           height: height / 3,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.white, width: 0.4),
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(40),
               topRight: Radius.circular(40),
             ),
