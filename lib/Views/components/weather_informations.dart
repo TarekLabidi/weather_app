@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'local_weather_card.dart';
 
 class WeatherInformations extends StatelessWidget {
   const WeatherInformations({super.key});
@@ -33,7 +34,7 @@ class WeatherInformations extends StatelessWidget {
               style: GoogleFonts.lato(
                 fontWeight: FontWeight.w300,
                 fontSize: 20,
-                color: Color.fromARGB(255, 209, 205, 205),
+                color: const Color.fromARGB(255, 209, 205, 205),
               ),
             ),
             const Spacer(),
@@ -42,7 +43,7 @@ class WeatherInformations extends StatelessWidget {
               style: GoogleFonts.lato(
                 fontWeight: FontWeight.w300,
                 fontSize: 20,
-                color: Color.fromARGB(255, 209, 205, 205),
+                color: const Color.fromARGB(255, 209, 205, 205),
               ),
             ),
             const SizedBox(
@@ -76,20 +77,12 @@ class WeatherInformations extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 82,
+          height: 180,
           child: ListView.builder(
-              shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              itemCount: 8,
+              itemCount: 11,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    color: Colors.red,
-                    height: 82,
-                    width: 80,
-                  ),
-                );
+                return LocalWeatherCard(index: index);
               }),
         ),
         const Spacer(),
