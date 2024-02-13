@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:weather_app/Views/components/weather_informations.dart';
+import 'package:weather_app/components/weather_informations.dart';
 
 class BottomInformationsSheet extends StatelessWidget {
   const BottomInformationsSheet({Key? key});

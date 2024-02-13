@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/Views/components/bottom_informations_sheet.dart';
-import 'package:weather_app/Views/components/text_widget.dart';
+import 'package:weather_app/components/bottom_informations_sheet.dart';
+import 'package:weather_app/components/text_widget.dart';
 
 class VerticalLayout extends StatefulWidget {
   const VerticalLayout({super.key});

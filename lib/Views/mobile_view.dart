@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/Views/mobileView/horizontal_layout.dart';
-import 'package:weather_app/Views/mobileView/verticla_layout.dart';
+import 'package:weather_app/mobileView/horizontal_layout.dart';
+import 'package:weather_app/mobileView/verticla_layout.dart';
 
 class BuildMobileView extends StatefulWidget {
   const BuildMobileView({super.key});
