@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
       print('entred');
       const apiKey = '69fa17bd7ec7b060c3ccd21d5d9307b6';
       const city = 'Monastir,TN';
-      print('res5');
+      print('res');
       final url = Uri.parse(
           'https://api.openweathermap.org/data/2.5/forecast?q=$city,uk&APPID=$apiKey');
       final res = await http.get(url);
