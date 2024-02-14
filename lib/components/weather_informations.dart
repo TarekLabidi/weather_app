@@ -77,13 +77,36 @@ class WeatherInformations extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 180,
+          height: 165,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 11,
               itemBuilder: (context, index) {
                 return LocalWeatherCard(index: index);
               }),
+        ),
+        Divider(
+          thickness: 1,
+        ),
+        Row(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width / 2 - 5,
+              child: Icon(
+                Icons.location_on_outlined,
+                size: 40,
+                color: Colors.white,
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width / 2,
+              child: Icon(
+                Icons.location_on_outlined,
+                size: 40,
+                color: Colors.white,
+              ),
+            )
+          ],
         ),
         const Spacer(),
       ],

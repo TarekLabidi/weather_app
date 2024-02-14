@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:weather_app/home_page.dart';
+
+import 'weather_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +21,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: ChangeNotifierProvider(
+          create: (context) => WeatherProvider(), child: const MyHomePage()),
     );
   }
 }

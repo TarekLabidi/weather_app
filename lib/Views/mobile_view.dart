@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/mobileView/horizontal_layout.dart';
-import 'package:weather_app/mobileView/verticla_layout.dart';
+import '../mobileView/vertical_layout/mobile_home_page.dart';
 
 class BuildMobileView extends StatefulWidget {
   const BuildMobileView({super.key});
@@ -16,7 +16,7 @@ class _BuildMobileViewState extends State<BuildMobileView> {
       //Making sure the App looks good when the phone is Oriznted
       body: OrientationBuilder(builder: (context, orientation) {
         return orientation == Orientation.portrait
-            ? const VerticalLayout()
+            ? const MobileVericalLayoutHomePage()
             : const HorizontalLayout();
       }),
     );

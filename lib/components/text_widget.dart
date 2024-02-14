@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/weather_provider.dart';
 
 class TextWidget extends StatelessWidget {
   final double degree;
@@ -29,7 +31,7 @@ class TextWidget extends StatelessWidget {
               letterSpacing: 1.5),
         ),
         Text(
-          '${degree.toStringAsFixed(2)} °',
+          '${context.watch<WeatherProvider>().temp.toStringAsFixed(2)} °',
           style: GoogleFonts.lato(
               fontSize: 78,
               fontWeight: FontWeight.w300,

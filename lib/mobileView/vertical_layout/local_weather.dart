@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:weather_app/api.dart';
 import 'package:weather_app/components/bottom_informations_sheet.dart';
 import 'package:weather_app/components/text_widget.dart';
+import 'package:weather_app/weather_provider.dart';
 
-class VerticalLayout extends StatefulWidget {
-  const VerticalLayout({super.key});
+class LocalWeather extends StatefulWidget {
+  const LocalWeather({super.key});
 
   @override
-  State<VerticalLayout> createState() => _VerticalLayoutState();
+  State<LocalWeather> createState() => _LocalWeatherState();
 }
 
-class _VerticalLayoutState extends State<VerticalLayout> {
+class _LocalWeatherState extends State<LocalWeather> {
   late double degree = 0;
   late String desc = '';
   late double highest = 0;
   late double lowest = 0;
-  bool isLoading = true;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -31,7 +31,8 @@ class _VerticalLayoutState extends State<VerticalLayout> {
       final weatherData = WeatherApi.extractWeatherData(res);
 
       setState(() {
-        degree = weatherData.degree;
+        Provider.of<WeatherProvider>(context, listen: false)
+            .setTemp(weatherData.degree);
         desc = weatherData.desc;
         highest = weatherData.highest;
         lowest = weatherData.lowest;
