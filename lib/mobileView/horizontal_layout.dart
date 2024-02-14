@@ -10,7 +10,6 @@ class HorizontalLayout extends StatefulWidget {
 class _HorizontalLayoutState extends State<HorizontalLayout> {
   @override
   Widget build(BuildContext context) {
-    print("okkk");
     return const Scaffold(
       backgroundColor: Colors.black,
     );

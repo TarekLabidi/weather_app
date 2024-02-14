@@ -4,17 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:weather_app/weather_provider.dart';
 
 class TextWidget extends StatelessWidget {
-  final double degree;
-  final String desc;
-  final double highest;
-  final double lowest;
-  const TextWidget(
-      {super.key,
-      required this.width,
-      required this.degree,
-      required this.desc,
-      required this.highest,
-      required this.lowest});
+  const TextWidget({
+    super.key,
+    required this.width,
+  });
 
   final double width;
 
@@ -31,7 +24,7 @@ class TextWidget extends StatelessWidget {
               letterSpacing: 1.5),
         ),
         Text(
-          '${context.watch<WeatherProvider>().temp.toStringAsFixed(2)} °',
+          '${context.watch<WeatherProvider>().degree.toStringAsFixed(2)} °',
           style: GoogleFonts.lato(
               fontSize: 78,
               fontWeight: FontWeight.w300,
@@ -39,7 +32,7 @@ class TextWidget extends StatelessWidget {
               letterSpacing: 1.5),
         ),
         Text(
-          desc,
+          context.watch<WeatherProvider>().desc,
           style: GoogleFonts.lato(
               fontSize: 24,
               fontWeight: FontWeight.w400,
@@ -50,7 +43,7 @@ class TextWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'H:${highest.toStringAsFixed(2)}°',
+              'H ${context.watch<WeatherProvider>().highest.toStringAsFixed(2)}°',
               style: GoogleFonts.lato(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -59,7 +52,7 @@ class TextWidget extends StatelessWidget {
             ),
             SizedBox(width: width / 24),
             Text(
-              'L:${lowest.toStringAsFixed(2)}°',
+              'L:${context.watch<WeatherProvider>().lowest.toStringAsFixed(2)}°',
               style: GoogleFonts.lato(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,

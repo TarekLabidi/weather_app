@@ -32,8 +32,8 @@ class LocalWeatherCard extends StatelessWidget {
                         Radius.circular(40),
                       ),
                       child: Container(
-                        width: width / 7,
-                        height: height / 6,
+                        width: width / 6,
+                        height: height / 5,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                           boxShadow: [
@@ -59,13 +59,11 @@ class LocalWeatherCard extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),
-                            SizedBox(
-                              height: height / 84,
-                            ),
+                            const Spacer(),
                             Image.asset(
                               'assets/images/rainycloud.png',
-                              width: 60,
-                              height: 40,
+                              width: 70,
+                              height: 50,
                             ),
                             const Spacer(),
                             Text(
@@ -89,8 +87,8 @@ class LocalWeatherCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  width: width / 7,
-                  height: height / 6,
+                  width: width / 6,
+                  height: height / 5,
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     border: Border.all(color: Colors.white, width: 0.4),

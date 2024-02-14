@@ -13,11 +13,7 @@ class LocalWeather extends StatefulWidget {
 }
 
 class _LocalWeatherState extends State<LocalWeather> {
-  late double degree = 0;
-  late String desc = '';
-  late double highest = 0;
-  late double lowest = 0;
-  bool isLoading = false;
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -32,10 +28,8 @@ class _LocalWeatherState extends State<LocalWeather> {
 
       setState(() {
         Provider.of<WeatherProvider>(context, listen: false)
-            .setTemp(weatherData.degree);
-        desc = weatherData.desc;
-        highest = weatherData.highest;
-        lowest = weatherData.lowest;
+            .homePageVars(weatherData);
+
         isLoading = false;
       });
     } catch (e) {
@@ -52,7 +46,7 @@ class _LocalWeatherState extends State<LocalWeather> {
             body: Stack(
               children: [
                 Image.asset(
-                  'assets/images/stars.png',
+                  context.watch<WeatherProvider>().getBackground(),
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover,
@@ -82,10 +76,6 @@ class _LocalWeatherState extends State<LocalWeather> {
                     Center(
                       child: TextWidget(
                         width: width,
-                        degree: degree,
-                        highest: highest,
-                        lowest: lowest,
-                        desc: desc,
                       ),
                     ),
                     const Spacer(),
