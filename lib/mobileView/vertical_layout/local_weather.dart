@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/api.dart';
+import 'package:weather_app/data/api.dart';
 import 'package:weather_app/components/bottom_informations_sheet.dart';
 import 'package:weather_app/components/text_widget.dart';
-import 'package:weather_app/weather_provider.dart';
+import 'package:weather_app/data/weather_provider.dart';
 
 class LocalWeather extends StatefulWidget {
   const LocalWeather({super.key});
@@ -55,10 +55,11 @@ class _LocalWeatherState extends State<LocalWeather> {
                   alignment: Alignment.bottomCenter,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/images/house.png',
-                        height: height * 0.55,
+                        'assets/images/house1.png',
+                        height: height * 0.65,
                         width: width,
                         fit: BoxFit.cover,
                       ),

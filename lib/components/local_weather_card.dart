@@ -2,17 +2,67 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app/data/api.dart';
 
-class LocalWeatherCard extends StatelessWidget {
+class LocalWeatherCard extends StatefulWidget {
   final int index;
   const LocalWeatherCard({Key? key, required this.index}) : super(key: key);
+
+  @override
+  State<LocalWeatherCard> createState() => _LocalWeatherCardState();
+}
+
+class _LocalWeatherCardState extends State<LocalWeatherCard> {
+  late double degree = 0;
+  late String time = '';
+  late String desc = '';
+  void initState() {
+    super.initState();
+    initializeWeatherData();
+  }
+
+  Future<void> initializeWeatherData() async {
+    try {
+      final res = await WeatherApi.getCurrentWeather('Monastir,TN');
+      final weatherData =
+          WeatherApi.extractFutureWeatherData(res, widget.index);
+
+      setState(() {
+        degree = weatherData.degree;
+        time = weatherData.time;
+        time = time[11] + time[12];
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  String getIcon() {
+    if (desc == 'few clouds' ||
+        desc == "broken clouds" ||
+        desc == 'scattered clouds') {
+      if (int.parse(time) > 18 || int.parse(time) < 6) {
+        return 'assets/images/brokencloudiconam.png';
+      } else {
+        return 'assets/images/brokencloudiconpm.png';
+      }
+    } else if (desc == "overcast clouds" || desc == "light rain") {
+      if (int.parse(time) > 18 || int.parse(time) < 6) {
+        return 'assets/images/rainycloudam.png';
+      } else {
+        return 'assets/images/rainycloudpm.png';
+      }
+    } else {
+      return 'assets/images/sun.png';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     //Creating a blurred Container with a white border
-    return (index != 0)
+    return (widget.index != 0)
         ? Stack(
             children: [
               // Container blurred
@@ -53,7 +103,7 @@ class LocalWeatherCard extends StatelessWidget {
                               height: height / 48,
                             ),
                             Text(
-                              "12 PM",
+                              "$time:00",
                               style: GoogleFonts.lato(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -61,13 +111,13 @@ class LocalWeatherCard extends StatelessWidget {
                             ),
                             const Spacer(),
                             Image.asset(
-                              'assets/images/rainycloud.png',
+                              getIcon(),
                               width: 70,
                               height: 50,
                             ),
                             const Spacer(),
                             Text(
-                              "19°",
+                              "${degree.toStringAsFixed(2)}",
                               style: GoogleFonts.lato(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,

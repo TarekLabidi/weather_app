@@ -27,6 +27,15 @@ class WeatherApi {
 
     return WeatherData(degree, desc, highest, lowest);
   }
+
+  static FutureWeatherData extractFutureWeatherData(
+      Map<String, dynamic> weatherData, int index) {
+    double degree = weatherData['list'][index]['main']['temp'] - 273.15;
+    String desc = weatherData['list'][index]['weather'][0]["description"];
+    String time = weatherData['list'][index]["dt_txt"];
+
+    return FutureWeatherData(degree, desc, time);
+  }
 }
 
 class WeatherData {
@@ -36,4 +45,11 @@ class WeatherData {
   final double lowest;
 
   WeatherData(this.degree, this.desc, this.highest, this.lowest);
+}
+
+class FutureWeatherData {
+  final double degree;
+  final String desc;
+  final String time;
+  FutureWeatherData(this.degree, this.desc, this.time);
 }

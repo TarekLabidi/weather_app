@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/api.dart';
+import 'package:weather_app/data/api.dart';
 
 class WeatherProvider extends ChangeNotifier {
   double degree = 0;

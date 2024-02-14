@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/weather_provider.dart';
+import 'package:weather_app/data/weather_provider.dart';
 
 class TextWidget extends StatelessWidget {
   const TextWidget({
