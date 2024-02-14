@@ -2,20 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextWidget extends StatelessWidget {
-  final String city;
-  final int degree;
-  final String description;
-  final int highest;
-  final int lowest;
-  const TextWidget({
-    super.key,
-    required this.width,
-    required this.city,
-    required this.degree,
-    required this.description,
-    required this.highest,
-    required this.lowest,
-  });
+  final double degree;
+  final String desc;
+  final double highest;
+  final double lowest;
+  const TextWidget(
+      {super.key,
+      required this.width,
+      required this.degree,
+      required this.desc,
+      required this.highest,
+      required this.lowest});
 
   final double width;
 
@@ -24,7 +21,7 @@ class TextWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          city,
+          'Monastir',
           style: GoogleFonts.lato(
               fontWeight: FontWeight.bold,
               fontSize: 34,
@@ -32,7 +29,7 @@ class TextWidget extends StatelessWidget {
               letterSpacing: 1.5),
         ),
         Text(
-          '$degree°',
+          '${degree.toStringAsFixed(2)} °',
           style: GoogleFonts.lato(
               fontSize: 78,
               fontWeight: FontWeight.w300,
@@ -40,7 +37,7 @@ class TextWidget extends StatelessWidget {
               letterSpacing: 1.5),
         ),
         Text(
-          description,
+          desc,
           style: GoogleFonts.lato(
               fontSize: 24,
               fontWeight: FontWeight.w400,
@@ -51,7 +48,7 @@ class TextWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'H:$highest°',
+              'H:${highest.toStringAsFixed(2)}°',
               style: GoogleFonts.lato(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -60,7 +57,7 @@ class TextWidget extends StatelessWidget {
             ),
             SizedBox(width: width / 24),
             Text(
-              'L:$lowest°',
+              'L:${lowest.toStringAsFixed(2)}°',
               style: GoogleFonts.lato(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
