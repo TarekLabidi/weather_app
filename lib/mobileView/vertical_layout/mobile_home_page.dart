@@ -15,7 +15,6 @@ class MobileVericalLayoutHomePage extends StatefulWidget {
 class _MobileVericalLayoutHomePageState
     extends State<MobileVericalLayoutHomePage> {
   List<Widget> pages = [const LocalWeather(), const OtherWeathers()];
-  int currentPage = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

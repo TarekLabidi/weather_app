@@ -6,7 +6,7 @@ class WeatherProvider extends ChangeNotifier {
   String desc = '';
   double highest = 0;
   double lowest = 0;
-  int currentPage = 0;
+  int currentPage = 1;
 
   void changePage(int index) {
     currentPage = index;
