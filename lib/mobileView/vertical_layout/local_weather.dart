@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/components/top_cercle_avatar.dart';
 import 'package:weather_app/data/api.dart';
 import 'package:weather_app/components/bottom_informations_sheet.dart';
 import 'package:weather_app/components/text_widget.dart';
@@ -82,7 +83,8 @@ class _LocalWeatherState extends State<LocalWeather> {
                     const Spacer(),
                     const BottomInformationsSheet(),
                   ],
-                )
+                ),
+                const TopCercleAvatar(),
               ],
             ),
           )

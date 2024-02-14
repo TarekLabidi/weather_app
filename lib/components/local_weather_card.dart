@@ -2,9 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+
 import 'package:weather_app/data/api.dart';
-import 'package:weather_app/data/weather_provider.dart';
 
 class LocalWeatherCard extends StatefulWidget {
   final int index;
@@ -28,17 +27,13 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
       final res = await WeatherApi.getCurrentWeather('Monastir,TN');
       final weatherData =
           WeatherApi.extractFutureWeatherData(res, widget.index);
-
-      setState(() {
-        degree = weatherData.degree;
-        time = weatherData.time;
-        time = time[11] + time[12];
-      });
-      if (widget.index == 10) {
-        print('ok');
-        context.read<WeatherProvider>().finishedLoading();
-      } else {
-        print('no');
+      //checking if the widget is still in the widget tree or not before calling setstate to avoid error
+      if (mounted) {
+        setState(() {
+          degree = weatherData.degree;
+          time = weatherData.time;
+          time = time[11] + time[12];
+        });
       }
     } catch (e) {
       rethrow;
@@ -98,8 +93,8 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
                         Radius.circular(40),
                       ),
                       child: Container(
-                        width: width / 6,
-                        height: height / 5,
+                        width: width / 5,
+                        height: height / 4,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                           boxShadow: [
@@ -153,8 +148,8 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  width: width / 6,
-                  height: height / 5,
+                  width: width / 5,
+                  height: height / 4,
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     border: Border.all(color: Colors.white, width: 0.4),

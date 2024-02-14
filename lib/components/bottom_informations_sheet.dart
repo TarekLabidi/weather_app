@@ -19,7 +19,7 @@ class BottomInformationsSheet extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
         child: Container(
           width: width,
-          height: height / 3 + 20,
+          height: height / 3 - 10,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.white, width: 0.4),
             color: Colors.transparent,
