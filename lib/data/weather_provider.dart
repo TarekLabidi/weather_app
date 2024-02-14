@@ -7,6 +7,11 @@ class WeatherProvider extends ChangeNotifier {
   double highest = 0;
   double lowest = 0;
   int currentPage = 0;
+  bool isLoading = true;
+  void finishedLoading() {
+    isLoading = false;
+    notifyListeners();
+  }
 
   void changePage(int index) {
     currentPage = index;

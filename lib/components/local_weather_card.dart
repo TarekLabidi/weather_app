@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_app/data/api.dart';
+import 'package:weather_app/data/weather_provider.dart';
 
 class LocalWeatherCard extends StatefulWidget {
   final int index;
@@ -32,6 +34,12 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
         time = weatherData.time;
         time = time[11] + time[12];
       });
+      if (widget.index == 10) {
+        print('ok');
+        context.read<WeatherProvider>().finishedLoading();
+      } else {
+        print('no');
+      }
     } catch (e) {
       rethrow;
     }
@@ -41,20 +49,28 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
     if (desc == 'few clouds' ||
         desc == "broken clouds" ||
         desc == 'scattered clouds') {
-      if (int.parse(time) > 18 || int.parse(time) < 6) {
+      if (isNightTime(int.tryParse(time) ?? 0)) {
         return 'assets/images/brokencloudiconam.png';
       } else {
         return 'assets/images/brokencloudiconpm.png';
       }
     } else if (desc == "overcast clouds" || desc == "light rain") {
-      if (int.parse(time) > 18 || int.parse(time) < 6) {
+      if (isNightTime(int.tryParse(time) ?? 0)) {
         return 'assets/images/rainycloudam.png';
       } else {
         return 'assets/images/rainycloudpm.png';
       }
     } else {
-      return 'assets/images/sun.png';
+      if (isNightTime(int.tryParse(time) ?? 0)) {
+        return 'assets/images/moon.png';
+      } else {
+        return 'assets/images/sun.png';
+      }
     }
+  }
+
+  bool isNightTime(int hour) {
+    return hour > 18 || hour < 6;
   }
 
   @override
@@ -117,7 +133,7 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
                             ),
                             const Spacer(),
                             Text(
-                              "${degree.toStringAsFixed(2)}",
+                              "${degree.toStringAsFixed(2)}°",
                               style: GoogleFonts.lato(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,

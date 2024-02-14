@@ -86,7 +86,7 @@ class _LocalWeatherState extends State<LocalWeather> {
               ],
             ),
           )
-        : Center(
+        : const Center(
             child: CircularProgressIndicator(),
           );
   }

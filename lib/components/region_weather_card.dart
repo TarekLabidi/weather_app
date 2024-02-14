@@ -9,9 +9,9 @@ class RegionWeatherCard extends StatelessWidget {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.only(topRight: Radius.circular(150)),
+          borderRadius: const BorderRadius.only(topRight: Radius.circular(150)),
           child: Card(
-            margin: EdgeInsets.symmetric(vertical: 20),
+            margin: const EdgeInsets.symmetric(vertical: 20),
             elevation: 6,
             color: Colors.black,
             shape: RoundedRectangleBorder(
