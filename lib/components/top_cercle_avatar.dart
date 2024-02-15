@@ -12,7 +12,7 @@ class TopCercleAvatar extends StatelessWidget {
     return Align(
       alignment: Alignment.topRight,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 20),
         child: GestureDetector(
           onTap: () {
             context.read<WeatherProvider>().changePage(1);

@@ -6,8 +6,10 @@ class WeatherProvider extends ChangeNotifier {
   String desc = '';
   double highest = 0;
   double lowest = 0;
+
   int currentPage = 0;
   bool isLoading = true;
+
   void finishedLoading() {
     isLoading = false;
     notifyListeners();
@@ -23,6 +25,7 @@ class WeatherProvider extends ChangeNotifier {
     desc = data.desc;
     highest = data.highest;
     lowest = data.lowest;
+
     notifyListeners();
   }
 

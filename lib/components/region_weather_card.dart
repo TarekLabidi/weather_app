@@ -1,7 +1,49 @@
 import 'package:flutter/material.dart';
 
-class RegionWeatherCard extends StatelessWidget {
-  const RegionWeatherCard({Key? key}) : super(key: key);
+import 'package:weather_app/data/api.dart';
+
+class RegionWeatherCard extends StatefulWidget {
+  final String city;
+  const RegionWeatherCard({Key? key, required this.city})
+      : super(
+          key: key,
+        );
+
+  @override
+  State<RegionWeatherCard> createState() => _RegionWeatherCardState();
+}
+
+class _RegionWeatherCardState extends State<RegionWeatherCard> {
+  bool isLoading = true;
+  late double degree = 0;
+  late String desc = "";
+  late double highest = 0;
+  late double lowest = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    initializeWeatherData();
+  }
+
+  Future<void> initializeWeatherData() async {
+    try {
+      final res = await WeatherApi.getCurrentWeather(widget.city);
+      final weatherData = WeatherApi.extractWeatherData(res);
+
+      if (mounted) {
+        setState(() {
+          degree = weatherData.degree;
+          desc = weatherData.desc;
+          highest = weatherData.highest;
+          lowest = weatherData.lowest;
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +69,9 @@ class RegionWeatherCard extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(top: height / 64, left: 24),
-                      child: const Text(
-                        '19°',
-                        style: TextStyle(
+                      child: Text(
+                        '${degree.toStringAsFixed(2)}°',
+                        style: const TextStyle(
                           fontSize: 56,
                           color: Colors.white,
                           fontWeight: FontWeight.w500,
@@ -40,9 +82,9 @@ class RegionWeatherCard extends StatelessWidget {
                     Row(
                       children: [
                         const SizedBox(width: 20),
-                        const Text(
-                          'H:19°',
-                          style: TextStyle(
+                        Text(
+                          'H:${highest.toStringAsFixed(2)}°',
+                          style: const TextStyle(
                             fontSize: 18,
                             color: Color.fromARGB(255, 197, 194, 194),
                           ),
@@ -50,9 +92,9 @@ class RegionWeatherCard extends StatelessWidget {
                         SizedBox(
                           width: MediaQuery.of(context).size.width / 24,
                         ),
-                        const Text(
-                          'L:19°',
-                          style: TextStyle(
+                        Text(
+                          'H:${lowest.toStringAsFixed(2)}°',
+                          style: const TextStyle(
                             fontSize: 18,
                             color: Color.fromARGB(255, 197, 194, 194),
                           ),
@@ -62,27 +104,28 @@ class RegionWeatherCard extends StatelessWidget {
                     SizedBox(height: height / 480),
                     Row(
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20.0),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
                           child: Text(
-                            'Fast Wind',
-                            style: TextStyle(
+                            desc,
+                            style: const TextStyle(
                                 fontSize: 16,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
                                 letterSpacing: 1.5),
                           ),
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                        ),
-                        const Text(
-                          'Soussa',
-                          style: TextStyle(
+                        const Spacer(),
+                        Text(
+                          widget.city,
+                          style: const TextStyle(
                               fontSize: 24,
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
+                        const SizedBox(
+                          width: 20,
+                        )
                       ],
                     )
                   ],

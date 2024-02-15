@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:weather_app/components/bottom_sheet_widget.dart';
 import 'package:weather_app/components/weather_informations.dart';
 
 class BottomInformationsSheet extends StatelessWidget {
@@ -24,7 +25,19 @@ class BottomInformationsSheet extends StatelessWidget {
             border: Border.all(color: Colors.white, width: 0.4),
             color: Colors.transparent,
           ),
-          child: const WeatherInformations(),
+          child: GestureDetector(
+            onVerticalDragUpdate: (details) {
+              if ((details.primaryDelta ?? 0) < -6) {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const BottomSheetWidget();
+                  },
+                );
+              }
+            },
+            child: const WeatherInformations(),
+          ),
         ),
       ),
     );

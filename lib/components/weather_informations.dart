@@ -64,7 +64,7 @@ class WeatherInformations extends StatelessWidget {
           height: 180,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 11,
+              itemCount: 8,
               itemBuilder: (context, index) {
                 return LocalWeatherCard(index: index);
               }),

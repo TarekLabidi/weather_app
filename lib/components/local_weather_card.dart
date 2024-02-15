@@ -1,9 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:weather_app/data/api.dart';
+import 'package:weather_app/data/logic.dart';
 
 class LocalWeatherCard extends StatefulWidget {
   final int index;
@@ -17,6 +16,7 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
   late double degree = 0;
   late String time = '';
   late String desc = '';
+  @override
   void initState() {
     super.initState();
     initializeWeatherData();
@@ -38,34 +38,6 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
     } catch (e) {
       rethrow;
     }
-  }
-
-  String getIcon() {
-    if (desc == 'few clouds' ||
-        desc == "broken clouds" ||
-        desc == 'scattered clouds') {
-      if (isNightTime(int.tryParse(time) ?? 0)) {
-        return 'assets/images/brokencloudiconam.png';
-      } else {
-        return 'assets/images/brokencloudiconpm.png';
-      }
-    } else if (desc == "overcast clouds" || desc == "light rain") {
-      if (isNightTime(int.tryParse(time) ?? 0)) {
-        return 'assets/images/rainycloudam.png';
-      } else {
-        return 'assets/images/rainycloudpm.png';
-      }
-    } else {
-      if (isNightTime(int.tryParse(time) ?? 0)) {
-        return 'assets/images/moon.png';
-      } else {
-        return 'assets/images/sun.png';
-      }
-    }
-  }
-
-  bool isNightTime(int hour) {
-    return hour > 18 || hour < 6;
   }
 
   @override
@@ -122,7 +94,7 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
                             ),
                             const Spacer(),
                             Image.asset(
-                              getIcon(),
+                              WeatherLogic.getIcon(desc, time),
                               width: 70,
                               height: 50,
                             ),
@@ -130,8 +102,8 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
                             Text(
                               "${degree.toStringAsFixed(2)}°",
                               style: GoogleFonts.lato(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
                                   color: Colors.white),
                             ),
                             SizedBox(

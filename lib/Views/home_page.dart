@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:weather_app/Views/mobile_view.dart';
+import 'package:weather_app/Views/mobileView/mobile_view.dart';
 import 'package:weather_app/Views/pc_view.dart';
 
 class MyHomePage extends StatefulWidget {

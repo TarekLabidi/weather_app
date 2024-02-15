@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/data/weather_provider.dart';
-import '../../components/region_weather_card.dart';
+import '../../../../components/region_weather_card.dart';
+
+List<String> otherCities = [
+  'Sousse,TN',
+  'Mahdia,TN',
+  'Tunis,TN',
+  'Ariana,TN',
+  'Bizerte,Tn',
+];
 
 class OtherWeathers extends StatefulWidget {
   const OtherWeathers({super.key});
@@ -11,12 +19,14 @@ class OtherWeathers extends StatefulWidget {
 }
 
 class _OtherWeathersState extends State<OtherWeathers> {
+  List<String> cities = otherCities;
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color.fromARGB(255, 63, 45, 116),
+      backgroundColor: const Color.fromARGB(255, 63, 45, 116),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: SingleChildScrollView(
@@ -53,13 +63,20 @@ class _OtherWeathersState extends State<OtherWeathers> {
               SizedBox(
                 height: height / 20,
               ),
-              const ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(30)),
+              ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(30)),
                 child: SizedBox(
                   height: 55,
                   child: TextField(
-                    style: TextStyle(color: Colors.white, letterSpacing: 1),
-                    decoration: InputDecoration(
+                    controller: controller,
+                    style:
+                        const TextStyle(color: Colors.white, letterSpacing: 1),
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(
+                          Icons.search,
+                          size: 30,
+                          color: Colors.white,
+                        ),
                         hintText: 'Search here',
                         hintStyle: TextStyle(color: Colors.grey),
                         filled: true,
@@ -69,20 +86,35 @@ class _OtherWeathersState extends State<OtherWeathers> {
                         ),
                         focusedBorder:
                             OutlineInputBorder(borderSide: BorderSide.none)),
+                    onChanged: searchCity,
                   ),
                 ),
               ),
               ListView.builder(
                   shrinkWrap: true,
-                  itemCount: 6,
+                  itemCount: cities.length,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return const RegionWeatherCard();
+                    final city = cities[index];
+                    return RegionWeatherCard(
+                      city: city,
+                    );
                   })
             ],
           ),
         ),
       ),
     );
+  }
+
+  void searchCity(String query) {
+    final suggestions = otherCities.where((city) {
+      final cityname = city.toLowerCase();
+      final input = query.toLowerCase();
+      return cityname.contains(input);
+    }).toList();
+    setState(() {
+      cities = suggestions;
+    });
   }
 }
