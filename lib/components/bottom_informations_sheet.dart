@@ -4,7 +4,7 @@ import 'package:weather_app/components/bottom_sheet_widget.dart';
 import 'package:weather_app/components/weather_informations.dart';
 
 class BottomInformationsSheet extends StatelessWidget {
-  const BottomInformationsSheet({Key? key});
+  const BottomInformationsSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
