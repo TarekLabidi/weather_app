@@ -6,7 +6,9 @@ import 'package:weather_app/data/logic.dart';
 
 class LocalWeatherCard extends StatefulWidget {
   final int index;
-  const LocalWeatherCard({Key? key, required this.index}) : super(key: key);
+  final bool isPc;
+  const LocalWeatherCard({Key? key, required this.index, required this.isPc})
+      : super(key: key);
 
   @override
   State<LocalWeatherCard> createState() => _LocalWeatherCardState();
@@ -16,6 +18,7 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
   late double degree = 0;
   late String time = '';
   late String desc = '';
+
   @override
   void initState() {
     super.initState();
@@ -45,7 +48,7 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     //Creating a blurred Container with a white border
-    return (widget.index != 0)
+    return (widget.index != 0 || widget.isPc == true)
         ? Stack(
             children: [
               // Container blurred
@@ -95,8 +98,8 @@ class _LocalWeatherCardState extends State<LocalWeatherCard> {
                             const Spacer(),
                             Image.asset(
                               WeatherLogic.getIcon(desc, time),
-                              width: 70,
-                              height: 50,
+                              width: width / 20,
+                              height: height / 20,
                             ),
                             const Spacer(),
                             Text(

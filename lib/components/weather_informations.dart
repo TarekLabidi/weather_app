@@ -66,7 +66,10 @@ class WeatherInformations extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 8,
               itemBuilder: (context, index) {
-                return LocalWeatherCard(index: index);
+                return LocalWeatherCard(
+                  index: index,
+                  isPc: false,
+                );
               }),
         ),
         const Spacer(),

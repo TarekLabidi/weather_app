@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:weather_app/components/local_weather_card.dart';
+import 'package:weather_app/components/sun_rise_set_widget.dart';
 import 'package:weather_app/data/api.dart';
-import 'package:weather_app/data/weather_provider.dart';
 
 class BottomSheetWidget extends StatefulWidget {
   const BottomSheetWidget({super.key});
@@ -100,7 +99,10 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return LocalWeatherCard(index: index);
+                  return LocalWeatherCard(
+                    index: index,
+                    isPc: false,
+                  );
                 },
               ),
             ),
@@ -114,50 +116,8 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                     color: Colors.white,
                   ),
                   borderRadius: BorderRadius.circular(20)),
-              child: Column(
-                children: [
-                  const Text(
-                    'SunRise',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
-                  ),
-                  Text(
-                    sunrise,
-                    style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                  Stack(
-                    children: [
-                      Image.asset(
-                        'assets/images/sunCourbe.png',
-                        height: height / 8,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: height / 10,
-                          ),
-                          Text(
-                            '            SunSet:  $sunset',
-                            style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  )
-                ],
-              ),
+              child: SunRiseSetWidget(
+                  sunrise: sunrise, height: height, sunset: sunset),
             )
           ],
         ),

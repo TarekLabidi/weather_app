@@ -16,7 +16,7 @@ class TextWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          'Monastir,TN',
+          'Monastir',
           style: GoogleFonts.lato(
               fontWeight: FontWeight.bold,
               fontSize: 34,
