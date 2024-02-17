@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:weather_app/Views/mobileView/vertical_layout/pages/other_weather.dart';
+import 'package:weather_app/Views/mobileView/pages/other_weather.dart';
 import 'package:weather_app/components/local_weather_card.dart';
 import 'package:weather_app/components/region_weather_card.dart';
 import 'package:weather_app/components/text_widget.dart';
-import 'package:weather_app/data/api.dart';
-import 'package:weather_app/data/weather_provider.dart';
+
 
 class BuildPcView extends StatefulWidget {
   const BuildPcView({super.key});
@@ -122,7 +120,7 @@ class _BuildPcViewState extends State<BuildPcView> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 40,
                 ),
                 SizedBox(

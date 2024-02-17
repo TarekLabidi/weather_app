@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/Views/mobileView/vertical_layout/pages/local_weather.dart';
-import 'package:weather_app/Views/mobileView/vertical_layout/pages/other_weather.dart';
+import 'package:weather_app/Views/mobileView/pages/local_weather.dart';
+import 'package:weather_app/Views/mobileView/pages/other_weather.dart';
 import 'package:weather_app/data/weather_provider.dart';
 
 class MobileVericalLayoutHomePage extends StatefulWidget {

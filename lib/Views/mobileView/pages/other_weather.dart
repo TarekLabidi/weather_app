@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/data/weather_provider.dart';
-import '../../../../components/region_weather_card.dart';
+import '../../../components/region_weather_card.dart';
 
 List<String> otherCities = [
   'Sousse,TN',

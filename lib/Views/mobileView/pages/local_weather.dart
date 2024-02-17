@@ -7,7 +7,7 @@ import 'package:weather_app/data/weather_provider.dart';
 import 'package:weather_app/components/bottom_informations_sheet.dart';
 import 'package:weather_app/components/top_cercle_avatar.dart';
 
-import '../../../../components/text_widget.dart';
+import '../../../components/text_widget.dart';
 
 class LocalWeather extends StatefulWidget {
   const LocalWeather({super.key});
